@@ -1,0 +1,12 @@
+# ignore cache
+__pycache__/
+
+.ipynb_checkpoints/
+
+test/
+
+data/
+
+.vscode/
+
+.csv
