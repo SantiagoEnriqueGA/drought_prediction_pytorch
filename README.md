@@ -79,4 +79,12 @@ The dataset is imbalanced, which can be observed in the provided graph.
 
 ## Conclusion
 
-This project demonstrates the process of tuning a neural network for multiclass classification on a real-world dataset. The steps include data preprocessing, model building, hyperparameter tuning, and evaluation. The final model achieves an accuracy of 73.37% and a macro F1 mean of 0.6895 on the test dataset.
+This project demonstrates the process of tuning a neural network for multiclass classification on a real-world dataset. The steps include data preprocessing, model building, hyperparameter tuning, and evaluation. The final model achieves great results on the test dataset:
+
+| Metric        | Value   |
+|---------------|---------|
+| Test Loss     | 0.6352  |
+| Accuracy      | 0.7337  |
+| Macro F1 Mean | 0.6895  |
+| MAE Mean      | 0.3255  |
+
