@@ -77,7 +77,7 @@ To avoid data leakage, the data has been split as follows:
 The dataset is imbalanced, which can be observed in the provided graph.  
 ![image](https://github.com/SantiagoEnriqueGA/droughtPrediction/assets/50879742/f531bd91-8617-43dc-89ce-ab985c0bdea7)
 
-## Conclusion
+## Results
 
 This project demonstrates the process of tuning a neural network for multiclass classification on a real-world dataset. The steps include data preprocessing, model building, hyperparameter tuning, and evaluation. The final model achieves great results on the test dataset:
 
@@ -87,4 +87,74 @@ This project demonstrates the process of tuning a neural network for multiclass 
 | Accuracy      | 0.7337  |
 | Macro F1 Mean | 0.6895  |
 | MAE Mean      | 0.3255  |
+
+## Final Model Visualization
+Simple             |  Detailed
+:-------------------------:|:-------------------------:
+![image](https://raw.githubusercontent.com/SantiagoEnriqueGA/drought_prediction_pytorch/main/vis/drought_model_simp.png)  |  ![image](https://raw.githubusercontent.com/SantiagoEnriqueGA/drought_prediction_pytorch/main/vis/drought_model_comp.png)
+
+## Model Componenets Explained
+1. **Input Layer:**
+   - The input tensor has a shape of `(1, 52)`, indicating a batch size of 1 and 52 input features.
+
+2. **First Linear Layer (layers.0):**
+   - **weights:** `layers.0.weight (1024, 52)`
+   - **bias:** `layers.0.bias (1024)`
+   - This layer maps the 52 input features to 1024 features using a linear transformation.
+
+3. **First Activation and Dropout:**
+   - The output from the first linear layer passes through a ReLU activation function, followed by a dropout layer to introduce regularization.
+   - Represented by `ReLUBackward0` and `TBackward0`.
+
+4. **Second Linear Layer (layers.1):**
+   - **weights:** `layers.1.weight (512, 1024)`
+   - **bias:** `layers.1.bias (512)`
+   - This layer takes the 1024 features from the previous layer and maps them to 512 features.
+
+5. **Second Activation and Dropout:**
+   - Similar to the first layer, the output from the second linear layer passes through ReLU activation and dropout.
+   - Represented by `ReLUBackward0` and `TBackward0`.
+
+6. **Third Linear Layer (layers.2):**
+   - **weights:** `layers.2.weight (256, 512)`
+   - **bias:** `layers.2.bias (256)`
+   - This layer reduces the 512 features to 256 features.
+
+7. **Third Activation and Dropout:**
+   - Again, the output goes through ReLU activation and dropout.
+   - Represented by `ReLUBackward0` and `TBackward0`.
+
+8. **Fourth Linear Layer (layers.3):**
+   - **weights:** `layers.3.weight (128, 256)`
+   - **bias:** `layers.3.bias (128)`
+   - This layer further reduces the features from 256 to 128.
+
+9. **Fourth Activation and Dropout:**
+   - The output undergoes ReLU activation and dropout.
+   - Represented by `ReLUBackward0` and `TBackward0`.
+
+10. **Fifth (Output) Linear Layer (layers.4):**
+    - **weights:** `layers.4.weight (6, 128)`
+    - **bias:** `layers.4.bias (6)`
+    - This final layer maps the 128 features to 6 output classes.
+
+11. **Output:**
+    - The final output tensor has a shape of `(1, 6)`, representing the model's prediction probabilities for each of the 6 classes.
+
+**AccumulateGrad Nodes:**
+- These nodes represent where the gradients are accumulated during the backward pass for updating the model parameters.
+
+**AddmmBackward0 Nodes:**
+- These nodes represent the matrix multiplication operations performed during the forward pass through each linear layer.
+- Detailed information about the matrix multiplication is provided, including the sizes of the matrices involved (`mat1`, `mat2`), strides, and saved tensors.
+
+**ReluBackward0 and TBackward0 Nodes:**
+- These nodes represent the ReLU activation and dropout operations applied to the output of each linear layer.
+
+**mat1, mat2, and result Tensors:**
+- `mat1` and `mat2` represent the input and weight matrices involved in the matrix multiplication.
+- `result` represents the output tensor after each matrix multiplication.
+
+
+
 
